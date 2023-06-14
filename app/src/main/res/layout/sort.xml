@@ -1,0 +1,30 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/btnSortByPriceAscending"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Сортировка по цене (по возрастанию)" />
+
+    <Button
+        android:id="@+id/btnSortByPriceDescending"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Сортировка по цене (по убыванию)" />
+
+    <Button
+        android:id="@+id/btnSortByAlphabetAscending"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Сортировка по алфавиту (по возрастанию)" />
+
+    <Button
+        android:id="@+id/btnSortByAlphabetDescending"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Сортировка по алфавиту (по убыванию)" />
+
+</LinearLayout>
