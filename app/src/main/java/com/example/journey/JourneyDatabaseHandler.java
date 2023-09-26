@@ -116,20 +116,6 @@ public class JourneyDatabaseHandler extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public void addJourney(Journey journey) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put(KEY_NAME, journey.getName());
-        values.put(KEY_COST, journey.getCost());
-        values.put(KEY_TIME, journey.getTime());
-        values.put(KEY_LOCATION, journey.getLocation());
-        values.put(KEY_DESCRIPTION, journey.getDescription());
-        values.put(KEY_IMAGE_RESOURCE_ID, journey.getImageResourceId());
-        values.put(KEY_TAGS, String.join(",", journey.getTags()));
-        db.insert(TABLE_JOURNEY, null, values);
-        db.close();
-    }
-
     public List<Journey> getAllJourneys() {
         List<Journey> journeyList = new ArrayList<>();
         String selectQuery = "SELECT * FROM " + TABLE_JOURNEY;

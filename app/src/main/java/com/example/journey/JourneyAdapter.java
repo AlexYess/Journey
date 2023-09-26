@@ -16,7 +16,6 @@ import java.util.List;
 
 public class JourneyAdapter extends RecyclerView.Adapter<JourneyAdapter.ViewHolder> {
     private List<Journey> journeyList;
-    private Context context;
 
     public JourneyAdapter(List<Journey> journeyList) {
         this.journeyList = journeyList;
@@ -25,7 +24,7 @@ public class JourneyAdapter extends RecyclerView.Adapter<JourneyAdapter.ViewHold
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        context = parent.getContext();
+        Context context = parent.getContext();
         View view = LayoutInflater.from(context).inflate(R.layout.journey_item, parent, false);
         return new ViewHolder(view);
     }
@@ -89,6 +88,11 @@ public class JourneyAdapter extends RecyclerView.Adapter<JourneyAdapter.ViewHold
                 return journey2.getName().compareToIgnoreCase(journey1.getName());
             }
         });
+        notifyDataSetChanged();
+    }
+
+    public void setJourneyList(List<Journey> journeyList) {
+        this.journeyList = journeyList;
         notifyDataSetChanged();
     }
 

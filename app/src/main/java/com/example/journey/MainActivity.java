@@ -34,15 +34,6 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.menu_catalog:
                         fragment = new CatalogFragment();
                         break;
-                    case R.id.menu_test:
-                        fragment = new TestFragment();
-                        break;
-                    case R.id.menu_notifications:
-                        fragment = new NotificationsFragment();
-                        break;
-                    case R.id.menu_profile:
-                        fragment = new ProfileFragment();
-                        break;
                 }
 
                 if (fragment != null && fragment != currentFragment) {

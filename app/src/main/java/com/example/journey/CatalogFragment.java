@@ -13,7 +13,10 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class CatalogFragment extends Fragment {
 
@@ -21,7 +24,7 @@ public class CatalogFragment extends Fragment {
     private JourneyAdapter journeyAdapter;
     private JourneyDatabaseHandler dbHandler;
     private AlertDialog dialog;
-
+    private Set<String> selectedTags; // Сет для хранения выбранных тегов
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -46,19 +49,6 @@ public class CatalogFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 showSortDialog();
-            }
-        });
-
-        Button button2 = view.findViewById(R.id.button2);
-        button2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Fragment fragment = new TagFilterFragment();
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragmentContainer, fragment);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
             }
         });
 
@@ -109,5 +99,31 @@ public class CatalogFragment extends Fragment {
 
         dialog = builder.create();
         dialog.show();
+    }
+
+    // Метод для фильтрации списка поездок по выбранным тегам
+    private void filterJourneysByTags() {
+        List<Journey> filteredList = new ArrayList<>();
+        for (Journey journey : dbHandler.getAllJourneys()) {
+            if (journeyContainsTags(journey)) {
+                filteredList.add(journey);
+            }
+        }
+        journeyAdapter.setJourneyList(filteredList);
+    }
+
+    // Метод для проверки, содержит ли поездка выбранные теги
+    private boolean journeyContainsTags(Journey journey) {
+        if (selectedTags.isEmpty()) {
+            return true; // Если не выбрано ни одного тега, вернуть true
+        } else {
+            Set<String> journeyTags = new HashSet<>();
+            journeyTags.add(journey.getTag1());
+            journeyTags.add(journey.getTag2());
+            journeyTags.add(journey.getTag3());
+            journeyTags.add(journey.getTag4());
+            journeyTags.add(journey.getTag5());
+            return journeyTags.containsAll(selectedTags); // Проверить, содержит ли поездка все выбранные теги
+        }
     }
 }

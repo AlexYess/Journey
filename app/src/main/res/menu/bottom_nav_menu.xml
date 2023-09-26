@@ -7,16 +7,4 @@
         android:id="@+id/menu_catalog"
         android:icon="@drawable/ic_catalog"
         android:title="@string/menu_catalog" />
-    <item
-        android:id="@+id/menu_test"
-        android:icon="@drawable/ic_test"
-        android:title="@string/menu_test" />
-    <item
-        android:id="@+id/menu_notifications"
-        android:icon="@drawable/ic_notifications"
-        android:title="@string/menu_notifications" />
-    <item
-        android:id="@+id/menu_profile"
-        android:icon="@drawable/ic_profile"
-        android:title="@string/menu_profile" />
 </menu>
