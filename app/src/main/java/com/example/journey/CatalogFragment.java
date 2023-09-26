@@ -100,30 +100,4 @@ public class CatalogFragment extends Fragment {
         dialog = builder.create();
         dialog.show();
     }
-
-    // Метод для фильтрации списка поездок по выбранным тегам
-    private void filterJourneysByTags() {
-        List<Journey> filteredList = new ArrayList<>();
-        for (Journey journey : dbHandler.getAllJourneys()) {
-            if (journeyContainsTags(journey)) {
-                filteredList.add(journey);
-            }
-        }
-        journeyAdapter.setJourneyList(filteredList);
-    }
-
-    // Метод для проверки, содержит ли поездка выбранные теги
-    private boolean journeyContainsTags(Journey journey) {
-        if (selectedTags.isEmpty()) {
-            return true; // Если не выбрано ни одного тега, вернуть true
-        } else {
-            Set<String> journeyTags = new HashSet<>();
-            journeyTags.add(journey.getTag1());
-            journeyTags.add(journey.getTag2());
-            journeyTags.add(journey.getTag3());
-            journeyTags.add(journey.getTag4());
-            journeyTags.add(journey.getTag5());
-            return journeyTags.containsAll(selectedTags); // Проверить, содержит ли поездка все выбранные теги
-        }
-    }
 }
